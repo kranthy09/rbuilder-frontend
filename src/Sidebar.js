@@ -16,12 +16,19 @@ import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import { useNavigate } from 'react-router-dom';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+
 
 const drawerWidth = 240;
 
 function ResponsiveDrawer() {
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const [isClosing, setIsClosing] = React.useState(false);
+    const theme = useTheme();
+    const navigate = useNavigate();
+    const isMediumDevice = useMediaQuery(theme.breakpoints.up('md'));
 
     const handleDrawerClose = () => {
         setIsClosing(true);
@@ -37,22 +44,34 @@ function ResponsiveDrawer() {
             setMobileOpen(!mobileOpen);
         }
     };
+    const handleNavigate = (path) => {
+        if (!isMediumDevice) {
+            handleDrawerClose();
+        }
+        navigate(path);
+    }
 
     const drawer = (
         <div>
             <Toolbar />
             <Divider />
             <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                    <ListItem key={text} disablePadding>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                            </ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItemButton>
-                    </ListItem>
-                ))}
+                <ListItem key={"dashboard"} disablePadding onClick={() => handleNavigate("/")}>
+                    <ListItemButton >
+                        <ListItemIcon>
+                            <MailIcon />
+                        </ListItemIcon>
+                        <ListItemText primary={"Dashboard"} />
+                    </ListItemButton>
+                </ListItem>
+                <ListItem key={"resumes"} disablePadding onClick={() => handleNavigate("/resumes")}>
+                    <ListItemButton >
+                        <ListItemIcon>
+                            <InboxIcon />
+                        </ListItemIcon>
+                        <ListItemText primary={"Resumes"} />
+                    </ListItemButton>
+                </ListItem>
             </List>
             <Divider />
             <List>
