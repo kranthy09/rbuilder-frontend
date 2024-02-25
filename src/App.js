@@ -9,6 +9,9 @@ import { Container } from '@mui/material';
 import Sidebar from './Sidebar';
 import Dashboard from './components/Dashboard';
 import ResumesList from './components/ResumesList';
+import CreateResume from './components/CreateResume';
+
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
@@ -30,12 +33,13 @@ function App() {
               <Routes>
                 <Route path='/' element={<Dashboard />} />
                 <Route path='/resumes' element={<ResumesList />} />
+                <Route path='/create' element={<CreateResume />} />
               </Routes>
             </Item>
           </Grid>
-          <Grid item md={3}>
+          <Grid item md={4}>
             <Toolbar />
-            <Item>xs=6 md=4</Item>
+            <Item sx={{ height: '100vh', backgroundColor: 'lightblue' }}>Recommendation Service</Item>
           </Grid>
         </Grid>
       </BrowserRouter>

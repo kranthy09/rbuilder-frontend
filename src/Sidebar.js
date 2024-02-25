@@ -72,6 +72,14 @@ function ResponsiveDrawer() {
                         <ListItemText primary={"Resumes"} />
                     </ListItemButton>
                 </ListItem>
+                <ListItem key={"create"} disablePadding onClick={() => handleNavigate("/create")}>
+                    <ListItemButton >
+                        <ListItemIcon>
+                            <InboxIcon />
+                        </ListItemIcon>
+                        <ListItemText primary={"Create"} />
+                    </ListItemButton>
+                </ListItem>
             </List>
             <Divider />
             <List>
